@@ -71,7 +71,7 @@ session_start();
             else{
 
             $pass = sha1($pass);
-            $sql= "SELECT id,first_name,last_name,email,images from users where email='$email' and password='$pass'";
+            $sql= "SELECT id,first_name,last_name,email,images,user_name,phone from users where email='$email' and password='$pass'";
             $result=$conn->query($sql);
 // echo $sql;
             

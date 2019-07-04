@@ -90,7 +90,7 @@ session_start();
 
     }
     else{
-        header('locaation:login.php');
+        header('location:login.php');
     }
 
  

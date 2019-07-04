@@ -291,19 +291,15 @@
                       <p><?php echo $rpass1Err;?></p>
 
                       <div class="form-group">        
-                          <div class="col-sm-offset-2 col-sm-4">
+                          <div class="col-sm-offset-1 col-sm-4">
                             <div class="checkbox">
-                              <label><input type="checkbox" id="agree" name="agree" required>I agree</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                              <label class="checkbox-inline"><input type="checkbox" id="agree" name="agree" required>I agree</label>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <label class="checkbox-inline"><input type="checkbox" name="remember"> Remember me</label>
                             </div>
                           </div>
                         </div>
-                  <div class="form-group">        
-                    <div class="col-sm-offset-2 col-sm-4">
-                      <div class="checkbox">
-                        <label><input type="checkbox" name="remember"> Remember me</label>
-                      </div>
-                    </div>
-                  </div>
                   <div class="form-group">        
                     <div class=" col-sm-4">
                       <button type="submit" class="btn btn-default" name="submit" >Submit</button>

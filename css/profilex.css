@@ -1,0 +1,153 @@
+
+/* Add a dark background color with a little bit see-through */ 
+.navbar {
+    margin-bottom: 0;
+    background-color: #000;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity:1;
+
+
+  }
+  
+  /* Add a gray color to all navbar links */
+  .navbar li a, .navbar .navbar-brand { 
+    color: #d5d5d5 !important;
+  }
+  
+  /* On hover, the links will turn white */
+  .navbar-nav li a:hover {
+    color: #fff !important;
+    transition: .5s;
+    background-color:  #ae56ae !important;
+
+  }
+  
+  /* The active link */
+  .navbar-nav li.active a {
+    color: #000 !important;
+    background-color:#fff !important;
+  }
+  
+  /* Remove border color from the collapsible button */
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+  }
+  
+  /* Dropdown */
+  .open .dropdown-toggle {
+    color: #fff ;
+    background-color: #555 !important;
+  }
+  
+  /* Dropdown links */
+  .dropdown-menu li a {
+    color: #000 !important;
+  }
+  
+  /* On hover, the dropdown links will turn red */
+  .dropdown-menu li a:hover {
+    background-color: red !important;
+  }
+
+  textarea{
+      resize: none;
+  }
+
+  .modal-body{
+    background-color: antiquewhite;
+    color: #000;
+  }
+  .modal-header , .modal-footer{
+      letter-spacing: 1px;
+      font-weight: bold;
+    color: #000;
+  }
+
+  .a{
+      text-align: center !important;
+  }
+
+  .a button{
+      border-radius: 18px;
+      width: 100px;
+  }
+
+  .a button:hover{
+    border-radius: 18px;
+    width: 100px;
+    color: #000;
+    background-color: #f4511e;
+    transition: .5s;
+    letter-spacing: 2px;
+}
+
+.left {
+
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    padding-top:30px;
+    padding-left: 15px;
+    background-color: #f4511e
+}
+
+.right {
+    left: 25%;
+    position: absolute;
+    height: 100%;
+    width: 75%;
+    overflow: auto;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 30px;
+    background-image: url(../images/image8.jpg);
+    /* background-size: cover; */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* background-color: aqua; */
+}
+
+
+/* .bb :nth-child(odd){
+    background-color: #555;
+
+} */
+.bb :nth-last-of-type(even){
+    background-color: #fff;
+    color: #000;
+}
+
+.bb :nth-last-of-type(even) p{
+
+  color: rgba(36, 32, 32, 0.774);
+}
+
+.b{
+    background-color: rgba(40, 17, 65, 0.479);
+    border-radius: 20px;
+    padding-top: 3px;
+    padding-left: 30px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    margin: 15px 0;
+    color: #fff;
+}
+
+.b p{
+    color: greenyellow;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
+
+.b pre{
+    color: blue;
+    font-size: 13px;
+}
+
+.left h2{
+  text-transform: uppercase;
+  
+}
