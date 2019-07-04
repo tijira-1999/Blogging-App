@@ -1,21 +1,119 @@
-input[type=text] {
-    width: 100%;
+body{
+  padding: 0;
+  margin: 0;
+  background: url(../images/image6.jpg);
+  background-size: cover;
+  background-position: center;
+  font-family: sans-serif;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+.col-sm-4{
+    left: 250px;
+}
+
+.col-sm-2{
+    left: 200px;
+    text-align: left !important;
+}
+p{
+    margin-left: 750px;
+    /* margin-top: 15px; */
+    
+}
+.form-group p{
+  padding-top: auto;
+  padding-left: 0
+}
+
+label{
+  letter-spacing: .35px;
+
+
+}
+
+input[type=text], input[type=password], input[type=email], input[type=number]  {
+    
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 2px 0;
     box-sizing: border-box;
-    border: 3px solid #ccc;
+    border: 3px solid #a4e;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  input[type=file]{
+    width: 100%;
+    padding: 3px ;
+    margin: 2px 0;
+    width: 200px;
+    border: 3px solid #f4e;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
   }
   
-  input[type=text]:focus {
-    border: 3px solid #555;
+  input[type=text]:focus , input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
+    border: 3px solid greenyellow;
+    width: 300px;
+    border-radius: 25px;
+    text-align: left;
+    transition-duration: 1s;
+  }
+  .container legend{
+    font-weight: 700;
+    padding-left:100px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    color: aqua;
+    letter-spacing: 1px;
   }
 
   .container{
-    margin-top: 50px;
-    border-radius: 10px;
-      padding-top: 50px;
-      background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+    position: absolute;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color:#fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-47%);
+    border-radius: 24px;
+      padding: 50px 20px;
+      /* background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */
+      width: 900px;
+      height: auto;
+      padding: 20px 0 ;
+
   }
+  button{
+    width: 450px;
+    border-radius: 10px !important;
+    
+  }
+
+  button:hover{
+    width: 450px;
+    border-radius: 25px !important;
+    background-color: #f4511e !important;
+    transition: 0.5s;
+    text-transform: uppercase !important;
+    color: white !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 15px;
+    
+  }
+
+  .avatar{
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    left: calc(50% - 50px);
+    position: absolute;
+    border-radius: 50%;
+    
+  }
+

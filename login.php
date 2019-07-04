@@ -113,6 +113,8 @@ session_start();
     </form> -->
 
     <div class="container">
+    <img src="images/avatar.png" alt="avatar" class="avatar">
+
                 <fieldset>
         <Legend>LOGIN</Legend>
                 <form class="form-horizontal" action="" method="POST" onsubmit=" return validate2('idx')">
@@ -135,14 +137,14 @@ session_start();
                   </div>
                   
                   <div class="form-group">        
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-4">
                       <div class="checkbox">
                         <label><input type="checkbox" name="remember"> Remember me</label>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">        
-                    <div class="col-sm-offset-2 col-sm-4">
+                    <div class="col-sm-4">
                       <button type="submit" class="btn btn-default">Submit</button>
                     </div>                  <span><p id="idx" style="display: none"></p></span>
 

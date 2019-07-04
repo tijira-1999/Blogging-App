@@ -7,13 +7,13 @@ function validate(inputId,errId){
     if(inputElement.value.length== "" )
     {
         inputError.style.display="block";
-        inputError.style.color="blue";
+        inputError.style.color="red";
         inputError.innerHTML="cannot be empty";
       
     }
     else{
         inputError.style.display="block";
-        inputError.style.color="black";
+        inputError.style.color="yellow";
         inputError.innerHTML="correct";
     }
 
@@ -25,8 +25,8 @@ function validate2(idw){
     if(check.value.length == "" && check1.value.length == ""){
         
         document.getElementById(idw).style.display="block";
-        document.getElementById(idw).style.color="yellow";
-        document.getElementById(idw).innerHTML="please check the input fields";
+        document.getElementById(idw).style.color="red";
+        document.getElementById(idw).innerHTML="check input fields";
         
         return false
     }

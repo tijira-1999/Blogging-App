@@ -68,8 +68,8 @@ function validate2(idw){
     if(check.value.length == "" || check1.value.length == "" || check2.value.length == "" || check3.value.length == "" || check4.value.length == "" || check5.value.length == "" || check6.value.length == ""){
         
         document.getElementById(idw).style.display="block";
-        document.getElementById(idw).style.color="yellow";
-        document.getElementById(idw).innerHTML="please check the input fields";
+        document.getElementById(idw).style.color="red";
+        document.getElementById(idw).innerHTML="check input fields";
         
         return false
     }
