@@ -17,6 +17,7 @@ session_start();
     <title>login page</title>
 
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/navigation.css">
     <script type="text/javascript" src="javascript/login.js"></script>
 
  
@@ -111,6 +112,29 @@ session_start();
     <br>
     <input type="submit" value="submit" name="submit">
     </form> -->
+
+        <!-- navbar -->
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+              </button>
+              <a class="navbar-brand" href="#">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="blog.html">ABOUT</a></li>
+                <li><a href="register1.php">REGISTER</a></li>
+                <li class="active"><a href="#">LOGIN</a></li>
+               
+              </ul>
+            </div>
+          </div>
+        </nav>
 
     <div class="container">
     <img src="images/avatar.png" alt="avatar" class="avatar">

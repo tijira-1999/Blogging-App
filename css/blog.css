@@ -4,7 +4,8 @@ body{
 }
 
 .item2 > h1{
-  padding-left: 10px
+  padding-left: 10px;
+  padding-top: 60px;
 }
 h1{
   font-weight: bold;
