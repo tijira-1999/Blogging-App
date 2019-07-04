@@ -1,0 +1,27 @@
+ul{
+   
+    list-style-type: none;
+    
+}
+ li{
+    display: inline;
+    text-transform: uppercase;
+    padding: 10px;
+    font-size: 20px;
+    
+}
+
+.nav{
+    background-color: #6a6aa6;
+    padding: 10px 0px;
+    position: sticky;
+    top: 0;
+    
+}
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+body{
+    margin: 0px;
+}

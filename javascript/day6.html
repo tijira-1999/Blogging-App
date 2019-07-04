@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+</head>
+<body>
+    <h1>welcome</h1>
+    <p class="demo">first para</p>
+    <p class="demo">second para</p>
+    <p class="demo">third para</p>
+    <input type="button" id="btnclick" value="click me">
+    <script type="text/javascript">
+        let paragraphs= document.getElementsByTagName("p");
+        console.log(paragraphs[0].innerHTML);
+        
+        let classPara= document.getElementsByClassName("demo");
+        console.log(classPara[1].innerHTML);
+
+        let querySelector= document.querySelectorAll("p.demo");
+        console.log(querySelector[2].innerHTML);
+
+        console.log(querySelector[2].childNodes[0].nodeValue);
+
+        document.getElementById("btnclick").addEventListener("click",clicked);
+
+        function clicked(){
+            alert("you clicked me");
+        }
+        
+
+    </script>
+
+
+</body>
+</html>
