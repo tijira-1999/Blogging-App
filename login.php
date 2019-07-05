@@ -88,7 +88,7 @@ session_start();
                     echo $record['email']."<br>";
                     // echo $record['email']."<br>";  
                     echo "login succesful";
-                    header('location:profile1.php');
+                    header('location:profilex.php');
                 }
                 else{
                     echo "invalid username or password";

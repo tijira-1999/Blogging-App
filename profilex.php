@@ -13,6 +13,8 @@ session_start();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <title>YOUR PROFILE</title>
 
@@ -172,11 +174,21 @@ session_start();
         <div class="left">
         <h1>Welcome</h1>
                 <?php
-                echo "<h2>".$_SESSION['userDetails']['first_name']." ".$_SESSION['userDetails']['last_name']."</h2>"
+                echo "<h3>".$_SESSION['userDetails']['first_name']." ".$_SESSION['userDetails']['last_name']."</h3>"
                 ?>
+                <br>
+                
             <div class="picimg">
-            <img src="<?php echo $_SESSION['userDetails']['images'] ?>" height=100px width=100px alt="image">
+            <img src="<?php 
+                        if($_SESSION['userDetails']['images'])
+                            echo $_SESSION['userDetails']['images'];
+                            else
+                        
+                      ?>" 
+                      height=200px width=200px alt="image">
             </div>
+            <br>
+            
             <div class="about">
                 
                 <label>User name: </label>
@@ -192,20 +204,15 @@ session_start();
                 <?php
                 echo "<p>".$_SESSION['userDetails']['phone']."</p><br>";
                 ?>
-                <ul><li><a class="logout" style="margin-left:36%;padding:5px;font-size: 1rem;" href="logout.php">Logout</a></li></ul>
+                
                 
             </div>
             <hr>
-            <h3>Contact Us</h3>
-            <ul>
-                <li>
-                    <a class="fa fa-facebook" href=" https://www.facebook.com/abhishek.ray.7771 "> Facebook</a></li>
-                <li>
-                    <a class="fa fa-twitter" href="https://twitter.com/abhishe15936339 ">Twitter</a></li>
-                <li>
-                    <a class="fa fa-linkedin" href=" https://www.facebook.com/abhishek.ray.7771 "> Linkedin</a></li>
-
-            </ul>
+            <h4>Contact Me</h4>
+            <div class="oo">
+                <a href="https://github.com/tijira-1999" target="_blank"><i class="fa fa-github"style="font-size:30px"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://www.linkedin.com/in/arijit-sahoo-62b099183" target="_blank"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
+            </div>
 
 
         </div>
