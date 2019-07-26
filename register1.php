@@ -281,7 +281,7 @@
                       <div class="form-group">
                         <label class="control-label col-sm-2" for="image" > Upload Image:</label>
                         <div class="col-sm-4">          
-                          <input type="file" class="form-control" id="image" placeholder="image" name="image">
+                          <input type="file" class="form-control" id="image" placeholder="image" name="image" required>
                         </div>
                         <!-- <p id="rpas" style="display: none"></p> -->
                         <p><?php echo $imageErr;?></p>

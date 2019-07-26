@@ -83,7 +83,7 @@ session_start();
                 
                 if($conn-> query($sql)) 
                 {
-                    echo "new record created successfully.";
+                    // echo "new record created successfully.";
                     // header('Location:login.php');
                 }
                 else
@@ -140,20 +140,22 @@ session_start();
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">CREATE NEW POST</h4>
                         </div>
-                        <form action="" method="post">
+                        <form action="" method="post" onsubmit="return xx()">
                         <div class="modal-body">
 
                             
                             <div class="form-group">
                                 <label for="title">Title:</label>
-                                <input type="text" class="form-control" placeholder="Enter Title" name="title" id="title">
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title" id="title" onblur="x('title','tit')">
                                 <p><?php echo $titleErr;?></p>
+                                <p id="tit" style="display: none"></p>
                                 <br>
                             </div>
                             <div class="form-group">
                                 <label for="des">Description:</label>
-                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5"></textarea>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onblur="x('des','de')"></textarea>
                                 <p><?php echo $desErr;?></p>
+                                <p id="de" style="display: none"></p>
                                 <br>
                             </div>
                                  
@@ -161,7 +163,7 @@ session_start();
                         </div>
                         
                         <div class="modal-footer a">                        
-                            <button type="submit" class="btn btn-success">Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="sub" type="submit" class="btn btn-success" disabled>Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>
                         </form>
@@ -247,9 +249,29 @@ session_start();
         
 
 <script>
-    function x(){
-        alert("new record created succesfully");
+    function x(inputId,errId){
+    var inputElement = document.getElementById(inputId);
+    var inputError = document.getElementById(errId);
+    
+// console.log(inputId);
+
+    if(inputElement.value.length== "" )
+    {
+        inputError.style.display="block";
+        inputError.style.color="red";
+        inputError.innerHTML="cannot be empty";
+        sta=false;
+      
     }
+    else{
+        inputError.style.display="none";
+        sta=true;
+        
+    }
+
+document.getElementById('sub').disabled = !sta;
+}
+
 </script>
 </body>
 </html>

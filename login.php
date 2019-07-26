@@ -25,7 +25,7 @@ session_start();
 <body>
 
 <?php
-    $emailErr=$passErr="";
+    $emailErr=$passErr=$invalid="";
     $email=$pass="";
     $status=true;
     $servername="localhost";
@@ -91,7 +91,8 @@ session_start();
                     header('location:profilex.php');
                 }
                 else{
-                    echo "invalid username or password";
+                    // echo "invalid username or password";
+                    $invalid="invalid username or password";
                 }
     
                 $conn->close();
@@ -142,6 +143,14 @@ session_start();
                 <fieldset>
         <Legend>LOGIN</Legend>
                 <form class="form-horizontal" action="" method="POST" onsubmit=" return validate2('idx')">
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for=""></label>
+                    <div class="col-sm-4">       
+                    <?php echo $invalid;?>   
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Email:</label>
                     <div class="col-sm-4">
