@@ -30,6 +30,7 @@ session_start();
     $titleErr=$desErr="";
     $title=$des="";
     $status=true;
+    $status1=true;
     $servername="localhost";
     $username="root";
     $password="";
@@ -66,8 +67,168 @@ session_start();
                 // $pass=sha1($pass);
     
             }
+
+
+
+
+            // edit profile part
+
+
+            if(empty($_POST['fname'])){
+                $fnameErr="first name is empty";
+                $status1=false;
+            }
+            else{
+            $fname=$_POST['fname'];
     
+            }
             
+            if(empty($_POST['lname'])){
+                $lnameErr="last name is empty";
+                $status1=false;
+    
+            }
+            else{
+                $lname=$_POST['lname'];
+    
+            }
+    
+            if(empty($_POST['Uname'])){
+                $userErr="user name is empty";
+                $status1=false;
+    
+            }
+            else{
+                $Uname=$_POST['Uname'];
+    
+            }
+    
+            if(empty($_POST['phone'])){
+                $phoneErr="phone no. is empty";
+                $status1=false;
+    
+            }
+            else{
+                $phone=$_POST['phone'];
+    
+            }
+            
+            if(empty($_POST['email'])){
+                $emailErr="email is empty";
+                $status1=false;
+    
+            }
+            else{
+                $email=$_POST['email'];
+    
+            }
+            if(empty($_POST['pwd'])){
+                $passErr="password is empty";
+                $status1=false;
+    
+            }
+            else{
+                // echo "password:" .$_POST['pwd']."<br>";
+                // $pass=$_POST['pwd'];
+                // $pass=sha1($pass);
+    
+                if(empty($_POST['rpwd'])){
+                    $rpassErr="re-entered password is empty";
+                    $status1=false;
+        
+                }
+                else{
+                    // echo "password:" .$_POST['pass']."<br>";
+                    // $pass=$_POST['pwd'];
+                    // $pass=sha1($pass);
+    
+                    if($_POST['pwd']==$_POST['rpwd']){
+                        $pass=$_POST['pwd'];
+                        $pass=sha1($pass);
+                    }
+                    else {
+                      $status1=false;
+                      $rpass1Err="password mismatch";
+                    }
+                    
+                }
+            }
+    
+                
+            // File related code
+            $target_dir="uploads/";
+            $target_file=$target_dir . basename($_FILES["image"]["name"]);
+            $fileStatus = true;
+    
+            // get image extension
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            if($imageFileType != "jpg" && $imageFileType != "png"){
+              $imageErr= "only JPG and PNG images allowed";
+              $fileStatus = false;
+              $status1 = false;
+            }
+    
+            if($fileStatus)
+            {
+              if(move_uploaded_file($_FILES["image"]["tmp_name"] , $target_file )){
+                $status1=true;
+                //die("File uploaded");
+              } 
+              else 
+              {
+                $imageErr= "Issues in file upload";
+                $status1 = false;
+                  }
+                }
+
+
+            if($status1){
+                // create new conection
+                $conn1 = new mysqli($servername,$username,$password,$dbname);
+            
+                // check connection
+                if($conn1->connect_error)
+                {
+                    die("connection falied" . $conn1->connect_error);
+                }
+                    
+                else
+                {
+                    // $sql1= "INSERT into users (first_name,last_name,user_name,email,phone,password,images) values('$fname','$lname','$Uname','$email','$phone','$pass','$target_file') ";
+                    $id1=$_SESSION['userDetails']['id'];
+                    $sql1= "UPDATE users 
+                            
+                            SET first_name = '$fname',
+                            last_name = '$lname',
+                            user_name = '$Uname',
+                            email = '$email',
+                            phone = '$phone',
+                            password = '$pass',
+                            images = '$target_file'
+                            
+                            WHERE id = $id1 ;";
+
+
+                    if($conn1-> query($sql1))
+                    {
+                                // echo "profile edited successfully.";
+                                header('Location:login.php');
+                    }
+                    else
+                    {
+                        echo "error" .$sql1. "<br>" . $conn1->error;
+                    }
+        
+                    $conn1->close();
+                }
+                // echo("connected successfully.")
+            }                
+              
+            
+    
+           
+    
+            // post table part
            
             if($status){
                 // create new conection
@@ -102,9 +263,9 @@ session_start();
         }
 
     }
-    else{
-        header('location:login.php');
-    }
+    // else{
+    //     header('location:login.php');
+    // }
     
     ?>
 
@@ -143,7 +304,7 @@ session_start();
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">EDIT PROFILE</h4>
                         </div>
-                        <form class="form-horizontal" action="" method="post" onsubmit="return xx()">
+                        <form class="form-horizontal" action="" method="post" onsubmit=" return validate2('idx')" enctype="multipart/form-data">
                         <div class="modal-body">
 
                             
@@ -161,7 +322,7 @@ session_start();
                                 <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onblur="x('des','de')"></textarea>
                                 <p id="fnam" style="display: none"></p>
                                 <p> -->
-                                    <?php echo $desErr;?>
+                                    
                                 <!-- </p>
                                 <br>
                             </div> -->
@@ -254,7 +415,7 @@ session_start();
                         </div>
                         
                         <div class="modal-footer a">                        
-                            <button id="sub" type="submit" class="btn btn-success" disabled>Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="sub" type="submit" class="btn btn-success">Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>
                         </form>
