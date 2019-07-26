@@ -73,7 +73,7 @@ session_start();
             $pass = sha1($pass);
             $sql= "SELECT id,first_name,last_name,email,images,user_name,phone from users where email='$email' and password='$pass'";
             $result=$conn->query($sql);
-// echo $sql;
+            // echo $sql;
             
 
                 if($result ->num_rows > 0) {
@@ -82,12 +82,12 @@ session_start();
                     $_SESSION['loggedIn'] = true;
                     $_SESSION['userDetails'] = $record;
 
-                    echo $record['id']."<br>"; 
-                    echo $record['first_name']."<br>"; 
-                    echo $record['last_name']."<br>"; 
-                    echo $record['email']."<br>";
+                    // echo $record['id']."<br>"; 
+                    // echo $record['first_name']."<br>"; 
+                    // echo $record['last_name']."<br>"; 
+                    // echo $record['email']."<br>";
                     // echo $record['email']."<br>";  
-                    echo "login succesful";
+                    // echo "login succesful";
                     header('location:profilex.php');
                 }
                 else{

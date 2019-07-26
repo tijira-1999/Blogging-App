@@ -25,9 +25,12 @@ session_start();
 <body>
     
 <?php
+    $fnameErr=$lnameErr=$emailErr=$passErr=$rpassErr=$pass1Err=$userErr=$phoneErr=$rpass1Err=$imageErr="";
+    $fname=$lname=$email=$pass=$Uname=$phone=$rpass="";
     $titleErr=$desErr="";
     $title=$des="";
     $status=true;
+    $status1=true;
     $servername="localhost";
     $username="root";
     $password="";
@@ -63,9 +66,169 @@ session_start();
                 $des=$_POST['des'];
                 // $pass=sha1($pass);
     
-                    }
+            }
+
+
+
+
+            // edit profile part
+
+
+            if(empty($_POST['fname'])){
+                $fnameErr="first name is empty";
+                $status1=false;
+            }
+            else{
+            $fname=$_POST['fname'];
     
+            }
             
+            if(empty($_POST['lname'])){
+                $lnameErr="last name is empty";
+                $status1=false;
+    
+            }
+            else{
+                $lname=$_POST['lname'];
+    
+            }
+    
+            if(empty($_POST['Uname'])){
+                $userErr="user name is empty";
+                $status1=false;
+    
+            }
+            else{
+                $Uname=$_POST['Uname'];
+    
+            }
+    
+            if(empty($_POST['phone'])){
+                $phoneErr="phone no. is empty";
+                $status1=false;
+    
+            }
+            else{
+                $phone=$_POST['phone'];
+    
+            }
+            
+            if(empty($_POST['email'])){
+                $emailErr="email is empty";
+                $status1=false;
+    
+            }
+            else{
+                $email=$_POST['email'];
+    
+            }
+            if(empty($_POST['pwd'])){
+                $passErr="password is empty";
+                $status1=false;
+    
+            }
+            else{
+                // echo "password:" .$_POST['pwd']."<br>";
+                // $pass=$_POST['pwd'];
+                // $pass=sha1($pass);
+    
+                if(empty($_POST['rpwd'])){
+                    $rpassErr="re-entered password is empty";
+                    $status1=false;
+        
+                }
+                else{
+                    // echo "password:" .$_POST['pass']."<br>";
+                    // $pass=$_POST['pwd'];
+                    // $pass=sha1($pass);
+    
+                    if($_POST['pwd']==$_POST['rpwd']){
+                        $pass=$_POST['pwd'];
+                        $pass=sha1($pass);
+                    }
+                    else {
+                      $status1=false;
+                      $rpass1Err="password mismatch";
+                    }
+                    
+                }
+            }
+    
+                
+            // File related code
+            $target_dir="uploads/";
+            $target_file=$target_dir . basename($_FILES["image"]["name"]);
+            $fileStatus = true;
+    
+            // get image extension
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            if($imageFileType != "jpg" && $imageFileType != "png"){
+              $imageErr= "only JPG and PNG images allowed";
+              $fileStatus = false;
+              $status1 = false;
+            }
+    
+            if($fileStatus)
+            {
+              if(move_uploaded_file($_FILES["image"]["tmp_name"] , $target_file )){
+                $status1=true;
+                //die("File uploaded");
+              } 
+              else 
+              {
+                $imageErr= "Issues in file upload";
+                $status1 = false;
+                  }
+                }
+
+
+            if($status1){
+                // create new conection
+                $conn1 = new mysqli($servername,$username,$password,$dbname);
+            
+                // check connection
+                if($conn1->connect_error)
+                {
+                    die("connection falied" . $conn1->connect_error);
+                }
+                    
+                else
+                {
+                    // $sql1= "INSERT into users (first_name,last_name,user_name,email,phone,password,images) values('$fname','$lname','$Uname','$email','$phone','$pass','$target_file') ";
+                    $id1=$_SESSION['userDetails']['id'];
+                    $sql1= "UPDATE users 
+                            
+                            SET first_name = '$fname',
+                            last_name = '$lname',
+                            user_name = '$Uname',
+                            email = '$email',
+                            phone = '$phone',
+                            password = '$pass',
+                            images = '$target_file'
+                            
+                            WHERE id = $id1 ;";
+
+
+                    if($conn1-> query($sql1))
+                    {
+                                // echo "profile edited successfully.";
+                                header('Location:login.php');
+                    }
+                    else
+                    {
+                        echo "error" .$sql1. "<br>" . $conn1->error;
+                    }
+        
+                    $conn1->close();
+                }
+                // echo("connected successfully.")
+            }                
+              
+            
+    
+           
+    
+            // post table part
            
             if($status){
                 // create new conection
@@ -100,9 +263,9 @@ session_start();
         }
 
     }
-    else{
-        header('location:login.php');
-    }
+    // else{
+    //     header('location:login.php');
+    // }
     
     ?>
 
@@ -122,12 +285,145 @@ session_start();
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">YOU</a></li>
                 <li><a href="#myModal" data-toggle="modal">CREATE POST</a></li>
+                <li><a href="#myModal1" data-toggle="modal">EDIT PROFILE</a></li>
                 <li><a href="logout.php">LOGOUT</a></li>
                
               </ul>
             </div>
           </div>
         </nav>
+
+        <div class="container">
+              <!-- Modal -->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">EDIT PROFILE</h4>
+                        </div>
+                        <form class="form-horizontal" action="" method="post" onsubmit=" return validate2('idx')" enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="fname">firstname:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="fname" placeholder="firstname" name="fname" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onblur="validate('fname','fnam')">
+                                </div>
+                                <p><?php echo $titleErr;?></p>
+                                <p id="tit" style="display: none"></p>
+                                <br>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="des">Description:</label>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onblur="x('des','de')"></textarea>
+                                <p id="fnam" style="display: none"></p>
+                                <p> -->
+                                    
+                                <!-- </p>
+                                <br>
+                            </div> -->
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lname">lastname:</label> 
+                                <div class="col-sm-4">                       
+                                    <input type="text" class="form-control" id="lname" placeholder="lastname" name="lname" value="<?php echo $_SESSION['userDetails']['last_name'];?>" onblur="validate('lname','lnam')">                        
+                                </div>
+                                <p id="lnam" style="display: none"></p>
+                                <p><?php echo $lnameErr;?></p>
+                                <br>
+                            </div>
+                    
+                    
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Uname">Username:</label>
+                                <div class="col-sm-4">                         
+                                    <input type="text" class="form-control" id="user" placeholder="Username" name="Uname" value="<?php echo $_SESSION['userDetails']['user_name'];?>" onblur="validate('user','use')">
+                                </div>
+                                <p id="use" style="display: none"></p>
+                                <p><?php echo $userErr;?> </p>
+                                <br>
+                            </div>
+                        
+                        
+                        
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="phone">Phone:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" id="phone" placeholder="phone number" name="phone" value="<?php echo $_SESSION['userDetails']['phone'];?>" onblur="validate('phone','phon')" >                               
+                                </div>
+                                <p id="phon" style="display: none"></p>
+                                <p><?php echo $phoneErr;?></p>
+                                <br>
+                            </div>
+                            
+                            
+                  
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="email">Email:</label> 
+                                <div class="col-sm-4">                   
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $_SESSION['userDetails']['email'];?>" onblur="validate('email','emai')">                   
+                                </div>
+                                <p id="emai" style="display: none"></p>
+                                <p><?php echo $emailErr;?></p>
+                                <br>
+                            </div>
+
+                  
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">New Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')" required>
+                                </div>
+                                <p id="pas" style="display: none"></p>
+                                <p><?php echo $passErr;?></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd" > Renter New Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')" required>
+                                </div>
+                                <p id="rpas" style="display: none"></p>
+                                <p><?php echo $rpassErr;?></p>
+                                <br>
+                            </div>
+                      
+                            <div  style="text-align: center;" id="x" style="display: none"></div>
+                            <p><?php echo $rpass1Err;?></p>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="image" > Upload Image:</label>                               
+                                <div class="col-sm-4">
+                                    <input type="file" class="form-control" id="image" placeholder="image" name="image" required>
+                                </div>    
+                                <!-- <p id="rpas" style="display: none"></p> -->
+                                <p><?php echo $imageErr;?></p>
+                                <br>
+                            </div>   
+                                 
+                        
+                        </div>
+                        
+                        <div class="modal-footer a">                        
+                            <button id="sub" type="submit" class="btn btn-success">Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                    </div>
+                </div>
+        </div>
 
         <div class="container">
               <!-- Modal -->
@@ -174,7 +470,8 @@ session_start();
         </div>
 
         <div class="left">
-        <h1>Welcome</h1>
+        <h1>Welcome</h1>      
+
                 <?php
                 echo "<h3>".$_SESSION['userDetails']['first_name']." ".$_SESSION['userDetails']['last_name']."</h3>"
                 ?>
@@ -221,7 +518,7 @@ session_start();
         <div class="image"></div>
         <div class="right">
             
-            <h1 style="text-align:left;">My blogs..</h1>
+            <h1 style="text-align:left;">My blogs...</h1>
             <?php
                 if($status){
                     // create new conection
