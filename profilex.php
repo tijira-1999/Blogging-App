@@ -382,7 +382,7 @@ session_start();
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="pwd">New Password:</label>
                                 <div class="col-sm-4">
-                                    <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')">
+                                    <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')" required>
                                 </div>
                                 <p id="pas" style="display: none"></p>
                                 <p><?php echo $passErr;?></p>
@@ -391,7 +391,7 @@ session_start();
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="pwd" > Renter New Password:</label>
                                 <div class="col-sm-4">
-                                    <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')">
+                                    <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')" required>
                                 </div>
                                 <p id="rpas" style="display: none"></p>
                                 <p><?php echo $rpassErr;?></p>
