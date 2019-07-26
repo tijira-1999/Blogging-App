@@ -36,11 +36,11 @@
             $fnameErr="first name is empty";
             $status=false;
         }
-         else{
+        else{
         echo "first Name:" .$_POST['fname']."<br>";
         $fname=$_POST['fname'];
 
-    }
+        }
         
         if(empty($_POST['lname'])){
             $lnameErr="last name is empty";

@@ -65,8 +65,8 @@ function validate2(idw){
     var check6 = document.getElementById('rpass');
     // var check7 = document.getElementById('agree');
    
-    if(check.value.length == "" || check1.value.length == "" || check2.value.length == "" || check3.value.length == "" || check4.value.length == "" || check5.value.length == "" || check6.value.length == ""){
-        
+    if(check.value.length == "" || check1.value.length == "" || check2.value.length == "" || check3.value.length == "" || check4.value.length == "" || check5.value.length == "" || check6.value.length == ""  || (check5.value != check6.value)){
+       
         document.getElementById(idw).style.display="block";
         document.getElementById(idw).style.color="red";
         document.getElementById(idw).innerHTML="check input fields";

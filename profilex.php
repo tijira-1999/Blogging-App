@@ -25,6 +25,8 @@ session_start();
 <body>
     
 <?php
+    $fnameErr=$lnameErr=$emailErr=$passErr=$rpassErr=$pass1Err=$userErr=$phoneErr=$rpass1Err=$imageErr="";
+    $fname=$lname=$email=$pass=$Uname=$phone=$rpass="";
     $titleErr=$desErr="";
     $title=$des="";
     $status=true;
@@ -63,7 +65,7 @@ session_start();
                 $des=$_POST['des'];
                 // $pass=sha1($pass);
     
-                    }
+            }
     
             
            
@@ -122,12 +124,145 @@ session_start();
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">YOU</a></li>
                 <li><a href="#myModal" data-toggle="modal">CREATE POST</a></li>
+                <li><a href="#myModal1" data-toggle="modal">EDIT PROFILE</a></li>
                 <li><a href="logout.php">LOGOUT</a></li>
                
               </ul>
             </div>
           </div>
         </nav>
+
+        <div class="container">
+              <!-- Modal -->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">EDIT PROFILE</h4>
+                        </div>
+                        <form class="form-horizontal" action="" method="post" onsubmit="return xx()">
+                        <div class="modal-body">
+
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="fname">firstname:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="fname" placeholder="firstname" name="fname" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onblur="validate('fname','fnam')">
+                                </div>
+                                <p><?php echo $titleErr;?></p>
+                                <p id="tit" style="display: none"></p>
+                                <br>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="des">Description:</label>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onblur="x('des','de')"></textarea>
+                                <p id="fnam" style="display: none"></p>
+                                <p> -->
+                                    <?php echo $desErr;?>
+                                <!-- </p>
+                                <br>
+                            </div> -->
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lname">lastname:</label> 
+                                <div class="col-sm-4">                       
+                                    <input type="text" class="form-control" id="lname" placeholder="lastname" name="lname" value="<?php echo $_SESSION['userDetails']['last_name'];?>" onblur="validate('lname','lnam')">                        
+                                </div>
+                                <p id="lnam" style="display: none"></p>
+                                <p><?php echo $lnameErr;?></p>
+                                <br>
+                            </div>
+                    
+                    
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Uname">Username:</label>
+                                <div class="col-sm-4">                         
+                                    <input type="text" class="form-control" id="user" placeholder="Username" name="Uname" value="<?php echo $_SESSION['userDetails']['user_name'];?>" onblur="validate('user','use')">
+                                </div>
+                                <p id="use" style="display: none"></p>
+                                <p><?php echo $userErr;?> </p>
+                                <br>
+                            </div>
+                        
+                        
+                        
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="phone">Phone:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" id="phone" placeholder="phone number" name="phone" value="<?php echo $_SESSION['userDetails']['phone'];?>" onblur="validate('phone','phon')" >                               
+                                </div>
+                                <p id="phon" style="display: none"></p>
+                                <p><?php echo $phoneErr;?></p>
+                                <br>
+                            </div>
+                            
+                            
+                  
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="email">Email:</label> 
+                                <div class="col-sm-4">                   
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $_SESSION['userDetails']['email'];?>" onblur="validate('email','emai')">                   
+                                </div>
+                                <p id="emai" style="display: none"></p>
+                                <p><?php echo $emailErr;?></p>
+                                <br>
+                            </div>
+
+                  
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">New Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')">
+                                </div>
+                                <p id="pas" style="display: none"></p>
+                                <p><?php echo $passErr;?></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd" > Renter New Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')">
+                                </div>
+                                <p id="rpas" style="display: none"></p>
+                                <p><?php echo $rpassErr;?></p>
+                                <br>
+                            </div>
+                      
+                            <div  style="text-align: center;" id="x" style="display: none"></div>
+                            <p><?php echo $rpass1Err;?></p>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="image" > Upload Image:</label>                               
+                                <div class="col-sm-4">
+                                    <input type="file" class="form-control" id="image" placeholder="image" name="image" required>
+                                </div>    
+                                <!-- <p id="rpas" style="display: none"></p> -->
+                                <p><?php echo $imageErr;?></p>
+                                <br>
+                            </div>   
+                                 
+                        
+                        </div>
+                        
+                        <div class="modal-footer a">                        
+                            <button id="sub" type="submit" class="btn btn-success" disabled>Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                    </div>
+                </div>
+        </div>
 
         <div class="container">
               <!-- Modal -->
@@ -174,7 +309,8 @@ session_start();
         </div>
 
         <div class="left">
-        <h1>Welcome</h1>
+        <h1>Welcome</h1>      
+
                 <?php
                 echo "<h3>".$_SESSION['userDetails']['first_name']." ".$_SESSION['userDetails']['last_name']."</h3>"
                 ?>
@@ -221,7 +357,7 @@ session_start();
         <div class="image"></div>
         <div class="right">
             
-            <h1 style="text-align:left;">My blogs..</h1>
+            <h1 style="text-align:left;">My blogs...</h1>
             <?php
                 if($status){
                     // create new conection
