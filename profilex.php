@@ -19,6 +19,7 @@ session_start();
     <title>YOUR PROFILE</title>
 
     <link rel="stylesheet" type="text/css" href="css/profilex.css">
+    <script type="text/javascript" src="javascript/profilexeditprofile.js"></script>
 
 
 </head>
@@ -314,7 +315,7 @@ session_start();
                                     <input type="text" class="form-control" id="fname" placeholder="firstname" name="fname" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onblur="validate('fname','fnam')">
                                 </div>
                                 <p><?php echo $fnameErr;?></p>
-                                <p id="tit" style="display: none"></p>
+                                <p id="fnam" style="display: none"></p>
                                 <br>
                             </div>
                             <!-- <div class="form-group">
@@ -382,7 +383,7 @@ session_start();
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="pwd">New Password:</label>
                                 <div class="col-sm-4">
-                                    <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')" required>
+                                    <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')">
                                 </div>
                                 <p id="pas" style="display: none"></p>
                                 <p><?php echo $passErr;?></p>
@@ -391,7 +392,7 @@ session_start();
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="pwd" > Renter New Password:</label>
                                 <div class="col-sm-4">
-                                    <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')" required>
+                                    <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')">
                                 </div>
                                 <p id="rpas" style="display: none"></p>
                                 <p><?php echo $rpassErr;?></p>
@@ -419,9 +420,12 @@ session_start();
                         </div>
                         
                         <div class="modal-footer a">                        
-                            <button id="sub" type="submit" class="btn btn-success">Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="sub" type="submit" class="btn btn-success">Done</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>
+
+                        <span><p id="idx" style="display: none"></p></span>
+                        
                         </form>
                     </div>
                     
