@@ -197,3 +197,7 @@ color: #ff00ff;
  .picimg img{
   border-radius: 10px 30px;
  }
+
+ .proimage{
+   margin-top: 20px !important;
+ }

@@ -309,11 +309,11 @@ session_start();
 
                             
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="fname">firstname:</label>
+                                <label class="control-label col-sm-4" for="fname">firstname:</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="fname" placeholder="firstname" name="fname" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onblur="validate('fname','fnam')">
                                 </div>
-                                <p><?php echo $titleErr;?></p>
+                                <p><?php echo $fnameErr;?></p>
                                 <p id="tit" style="display: none"></p>
                                 <br>
                             </div>
@@ -334,7 +334,7 @@ session_start();
 
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="lname">lastname:</label> 
+                                <label class="control-label col-sm-4" for="lname">lastname:</label> 
                                 <div class="col-sm-4">                       
                                     <input type="text" class="form-control" id="lname" placeholder="lastname" name="lname" value="<?php echo $_SESSION['userDetails']['last_name'];?>" onblur="validate('lname','lnam')">                        
                                 </div>
@@ -345,7 +345,7 @@ session_start();
                     
                     
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="Uname">Username:</label>
+                                <label class="control-label col-sm-4" for="Uname">Username:</label>
                                 <div class="col-sm-4">                         
                                     <input type="text" class="form-control" id="user" placeholder="Username" name="Uname" value="<?php echo $_SESSION['userDetails']['user_name'];?>" onblur="validate('user','use')">
                                 </div>
@@ -357,7 +357,7 @@ session_start();
                         
                         
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="phone">Phone:</label>
+                                <label class="control-label col-sm-4" for="phone">Phone:</label>
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" id="phone" placeholder="phone number" name="phone" value="<?php echo $_SESSION['userDetails']['phone'];?>" onblur="validate('phone','phon')" >                               
                                 </div>
@@ -369,7 +369,7 @@ session_start();
                             
                   
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="email">Email:</label> 
+                                <label class="control-label col-sm-4" for="email">Email:</label> 
                                 <div class="col-sm-4">                   
                                     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $_SESSION['userDetails']['email'];?>" onblur="validate('email','emai')">                   
                                 </div>
@@ -380,7 +380,7 @@ session_start();
 
                   
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="pwd">New Password:</label>
+                                <label class="control-label col-sm-4" for="pwd">New Password:</label>
                                 <div class="col-sm-4">
                                     <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')" required>
                                 </div>
@@ -389,7 +389,7 @@ session_start();
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="pwd" > Renter New Password:</label>
+                                <label class="control-label col-sm-4" for="pwd" > Renter New Password:</label>
                                 <div class="col-sm-4">
                                     <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="rpwd" onkeyup="validate1('rpass','rpas')" required>
                                 </div>
@@ -402,11 +402,15 @@ session_start();
                             <p><?php echo $rpass1Err;?></p>
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="image" > Upload Image:</label>                               
-                                <div class="col-sm-4">
-                                    <input type="file" class="form-control" id="image" placeholder="image" name="image" required>
-                                </div>    
-                                <!-- <p id="rpas" style="display: none"></p> -->
+                                <label class="control-label col-sm-4 proimage" for="image" > Change Image:</label>                               
+                                <div class="col-sm-4 proimage">
+                                    <input type="file" class="form-control" id="image" placeholder="image" name="image" value="<?php echo $_SESSION['userDetails']['images'];?>" required>                                
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <img src=" <?php if($_SESSION['userDetails']['images']) echo $_SESSION['userDetails']['images']; else?>" height=80px width=80px alt="image" style="border-radius:25px">
+                                </div> 
+
                                 <p><?php echo $imageErr;?></p>
                                 <br>
                             </div>   
