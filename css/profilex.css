@@ -201,3 +201,9 @@ color: #ff00ff;
  .proimage{
    margin-top: 20px !important;
  }
+
+ .gluebutton button:hover{
+   color: white;
+   background-color: #000;
+
+ }

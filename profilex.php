@@ -420,7 +420,7 @@ session_start();
                         </div>
                         
                         <div class="modal-footer a">                        
-                            <button id="sub" type="submit" class="btn btn-success">Done</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-success">Done</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>
 
@@ -532,15 +532,15 @@ session_start();
                     // create new conection
                     $conn = new mysqli($servername,$username,$password,$dbname);
                     $id=$_SESSION['userDetails']['id'];
-                    $sql="SELECT title,description,post.created_date_time from post
+                    $sql="SELECT title,description,post.created_date_time,post.last_update_date_time from post
                     inner join users on post.user_id=users.id where user_id=$id";
                     $postresult=$conn->query($sql);
                     echo "<div class='bb'>";
                     while($row=$postresult->fetch_assoc())
                     {
                     echo "<div class='b'>";
-                    echo "<h2>".$row["title"]."</h2> <hr>";
-                    echo "<pre>Created On:  " .$row["created_date_time"]."</pre>" ;
+                    echo "<h2>".$row["title"]."</h2> <button type='button' class='btn btn-default btn-sm'>  <span class='glyphicon glyphicon-pencil'></span>  </button>    &nbsp;&nbsp;       <button type='button' class='btn btn-default btn-sm'> <span class='glyphicon glyphicon-trash'></span> </button><hr>";
+                    echo "<pre>Created On:  " .$row["created_date_time"]."               Updated On:  " .$row["last_update_date_time"]."</pre>" ;
                     echo "<br><br>";
                     echo "<p>".$row["description"]."</p></div>";
                     
