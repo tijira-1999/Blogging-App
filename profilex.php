@@ -294,6 +294,8 @@ session_start();
           </div>
         </nav>
 
+        <!-- this is to edit profile -->
+
         <div class="container">
               <!-- Modal -->
                 <div class="modal fade" id="myModal1" role="dialog">
@@ -433,6 +435,8 @@ session_start();
                 </div>
         </div>
 
+        <!-- this to create a new post -->
+
         <div class="container">
               <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
@@ -444,7 +448,7 @@ session_start();
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">CREATE NEW POST</h4>
                         </div>
-                        <form action="" method="post" onsubmit="return xx()">
+                        <form action="" method="post" onsubmit="return xxx('idx1')">
                         <div class="modal-body">
 
                             
@@ -470,12 +474,71 @@ session_start();
                             <button id="sub" type="submit" class="btn btn-success" disabled>Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>
+
+                        <span><p id="idx1" style="display: none"></p></span>
+
                         </form>
                     </div>
                     
                     </div>
                 </div>
         </div>
+
+
+        <!-- this is to update post -->
+
+        <div class="container">
+              <!-- Modal -->
+                <div class="modal fade" id="myModalpost" role="dialog">
+                    <div class="modal-dialog">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">UPDATE POST</h4>
+                        </div>
+                        <form action="" method="post" onsubmit="return xxx('idx2')">
+                        <div class="modal-body">
+
+                            
+                            <div class="form-group">
+                                <label for="title1">Title:</label>
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" onkeyup="x1('title1','tit1','des1','de1">
+                                <p><?php echo $titleErr;?></p>
+                                <p id="tit1" style="display: none"></p>
+                                <br>
+                            </div>
+                            <div class="form-group">
+                                <label for="des1">Description:</label>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
+                                <p><?php echo $desErr;?></p>
+                                <p id="de1" style="display: none"></p>
+                                <br>
+                            </div>
+                                 
+                        
+                        </div>
+                        
+                        <div class="modal-footer a">                        
+                            <button id="sub1" type="submit" class="btn btn-success" disabled>Update</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+
+                        <span><p id="idx2" style="display: none"></p></span>
+
+                        </form>
+                    </div>
+                    
+                    </div>
+                </div>
+        </div>
+
+
+
+
+
+        <!-- profile display on left -->
 
         <div class="left">
         <h1>Welcome</h1>      
@@ -523,6 +586,11 @@ session_start();
 
 
         </div>
+
+
+
+        <!-- blog display on right -->
+
         <div class="image"></div>
         <div class="right">
             
@@ -539,7 +607,7 @@ session_start();
                     while($row=$postresult->fetch_assoc())
                     {
                     echo "<div class='b'>";
-                    echo "<h2>".$row["title"]."</h2> <button type='button' class='btn btn-default btn-sm'>  <span class='glyphicon glyphicon-pencil'></span>  </button>    &nbsp;&nbsp;       <button type='button' class='btn btn-default btn-sm'> <span class='glyphicon glyphicon-trash'></span> </button><hr>";
+                    echo "<h2>".$row["title"]."</h2> <a href='#myModalpost' style='color:#00bfff;background:none' data-toggle='modal'><span class='glyphicon glyphicon-pencil'></span></a>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       <a href='#myModalpost' style='color:#f4511e' data-toggle='modal'> <span class='glyphicon glyphicon-trash'></span> </a> <hr>";
                     echo "<pre>Created On:  " .$row["created_date_time"]."               Updated On:  " .$row["last_update_date_time"]."</pre>" ;
                     echo "<br><br>";
                     echo "<p>".$row["description"]."</p></div>";
@@ -553,47 +621,5 @@ session_start();
         </div>
         
 
-<script>
-    function x(inputId,errId,inputId1,errId1){
-    var inputElement = document.getElementById(inputId);
-    var inputError = document.getElementById(errId);
-
-    var inputElement1 = document.getElementById(inputId1);
-    var inputError1 = document.getElementById(errId1);
-    
-// console.log(inputId);
-
-    if(inputElement.value.length== "" )
-    {
-        inputError.style.display="block";
-        inputError.style.color="red";
-        inputError.innerHTML="cannot be empty";
-        sta=false;
-      
-    }
-    else{
-        inputError.style.display="none";
-        sta=true;
-        
-    }
-
-    if(inputElement1.value.length== "" )
-    {
-        inputError1.style.display="block";
-        inputError1.style.color="red";
-        inputError1.innerHTML="cannot be empty";
-        sta=false;
-      
-    }
-    else{
-        inputError1.style.display="none";
-        sta=true;
-        
-    }
-
-document.getElementById('sub').disabled = !sta;
-}
-
-</script>
 </body>
 </html>
