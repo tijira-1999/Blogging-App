@@ -294,6 +294,8 @@ session_start();
           </div>
         </nav>
 
+        <!-- this is to edit profile -->
+
         <div class="container">
               <!-- Modal -->
                 <div class="modal fade" id="myModal1" role="dialog">
@@ -433,6 +435,8 @@ session_start();
                 </div>
         </div>
 
+        <!-- this to create a new post -->
+
         <div class="container">
               <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
@@ -476,6 +480,59 @@ session_start();
                     </div>
                 </div>
         </div>
+
+
+        <!-- this is to update post -->
+
+        <div class="container">
+              <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">CREATE NEW POST</h4>
+                        </div>
+                        <form action="" method="post" onsubmit="return xx()">
+                        <div class="modal-body">
+
+                            
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title" id="title" onkeyup="x('title','tit','des','de')">
+                                <p><?php echo $titleErr;?></p>
+                                <p id="tit" style="display: none"></p>
+                                <br>
+                            </div>
+                            <div class="form-group">
+                                <label for="des">Description:</label>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onkeyup="x('title','tit','des','de')"></textarea>
+                                <p><?php echo $desErr;?></p>
+                                <p id="de" style="display: none"></p>
+                                <br>
+                            </div>
+                                 
+                        
+                        </div>
+                        
+                        <div class="modal-footer a">                        
+                            <button id="sub" type="submit" class="btn btn-success" disabled>Create</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                    </div>
+                </div>
+        </div>
+
+
+
+
+
+        <!-- profile display on left -->
 
         <div class="left">
         <h1>Welcome</h1>      
@@ -523,6 +580,11 @@ session_start();
 
 
         </div>
+
+
+
+        <!-- blog display on right -->
+
         <div class="image"></div>
         <div class="right">
             
