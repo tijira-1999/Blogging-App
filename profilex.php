@@ -535,9 +535,6 @@ session_start();
         </div>
 
 
-
-
-
         <!-- profile display on left -->
 
         <div class="left">
