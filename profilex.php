@@ -450,14 +450,14 @@ session_start();
                             
                             <div class="form-group">
                                 <label for="title">Title:</label>
-                                <input type="text" class="form-control" placeholder="Enter Title" name="title" id="title" onblur="x('title','tit')">
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title" id="title" onkeyup="x('title','tit','des','de')">
                                 <p><?php echo $titleErr;?></p>
                                 <p id="tit" style="display: none"></p>
                                 <br>
                             </div>
                             <div class="form-group">
                                 <label for="des">Description:</label>
-                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onblur="x('des','de')"></textarea>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des" id="des" rows="5" onkeyup="x('title','tit','des','de')"></textarea>
                                 <p><?php echo $desErr;?></p>
                                 <p id="de" style="display: none"></p>
                                 <br>
@@ -554,9 +554,12 @@ session_start();
         
 
 <script>
-    function x(inputId,errId){
+    function x(inputId,errId,inputId1,errId1){
     var inputElement = document.getElementById(inputId);
     var inputError = document.getElementById(errId);
+
+    var inputElement1 = document.getElementById(inputId1);
+    var inputError1 = document.getElementById(errId1);
     
 // console.log(inputId);
 
@@ -570,6 +573,20 @@ session_start();
     }
     else{
         inputError.style.display="none";
+        sta=true;
+        
+    }
+
+    if(inputElement1.value.length== "" )
+    {
+        inputError1.style.display="block";
+        inputError1.style.color="red";
+        inputError1.innerHTML="cannot be empty";
+        sta=false;
+      
+    }
+    else{
+        inputError1.style.display="none";
         sta=true;
         
     }
