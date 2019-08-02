@@ -1,4 +1,4 @@
-# form-Control
+# Blogging-App
 
 This is a basic blogging app with backend using php and mysql
 
