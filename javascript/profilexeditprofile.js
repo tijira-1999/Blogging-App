@@ -126,7 +126,7 @@ function x1(inputId1,errId1,inputId11,errId11){
     
 // console.log(inputId);
 
-    if(inputElement.value.length== "" )
+    if(inputElement1.value.length== "" )
     {
         inputError1.style.display="block";
         inputError1.style.color="red";
@@ -159,12 +159,12 @@ document.getElementById('sub1').disabled = !sta1;
 
 
 function xxx(idw1){
-    var check= document.getElementById('title');
-    var check1 = document.getElementById('des');
+    var check11= document.getElementById('title1');
+    var check111 = document.getElementById('des1');
 
     // var check7 = document.getElementById('agree');
    
-    if(check.value.length == "" || check1.value.length == "" ){
+    if(check11.value.length == "" || check111.value.length == "" ){
        
         document.getElementById(idw1).style.display="block";
         document.getElementById(idw1).style.color="red";
