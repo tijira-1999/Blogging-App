@@ -192,3 +192,12 @@ function xxx(idw1){
     else return true;
 }
 
+
+function dele() {
+    var p = document.getElementById("myCheck").checked;
+    if(p){
+        return true;       
+    }
+    else false;
+  }
+

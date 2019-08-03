@@ -304,11 +304,33 @@ session_start();
         
 
                 // to fetch specific post from post table
-                $conn_1 = new mysqli($servername,$username,$password,$dbname);
-                $id_1=$_SESSION['userDetails']['id'];
-                $sql_1="SELECT title,description,post.created_date_time,post.last_update_date_time,id from post
-                inner join users on post.user_id=users.id where user_id=$id_1";
-                $postresult_1=$conn_1->query($sql_1);
+                // $conn_1 = new mysqli($servername,$username,$password,$dbname);
+                // $id_1=$_SESSION['userDetails']['id'];
+                // $sql_1="SELECT title,description,post.created_date_time,post.last_update_date_time,id,user_id from post
+                // where user_id=$id_1";
+                // $postresult_1=$conn_1->query($sql_1);
+
+                // $data = array();
+                
+                // while($record_1=  $postresult_1->fetch_assoc()) {
+                //     $data[$record_1[id]]['id'] = $record_1['id'];
+                //     $data[$record_1[id]]['name'] = $record_1['name'];
+                //     $data[$record_1[id]]['locations'][] = array($record_1['zipcode'], $record_1['latitude'], $record_1['longitude']);
+                // }
+
+
+                // if( $postresult_1 ->num_rows > 0) {
+                //     while($record_1=  $postresult_1->fetch_assoc()) 
+                //     {
+                //     echo $record_1['id']."<br>"; 
+                //     echo $record_1['title']."<br>"; 
+                //     echo $record_1['description']."<br>"; 
+                //     echo $record_1['created_date_time']."<br>";
+                //     echo $record_1['last_update_date_time']."<br>";  
+                //     echo $record_1['user_id']."<br>";
+            
+                //     }
+                // }
 
 
                 // check connection
@@ -323,9 +345,9 @@ session_start();
                 $sql11= "UPDATE post 
                             
                         SET title = '$title1',
-                        description = '$des1',
+                        description = '$des1'
                         
-                        WHERE user_id = $id11 ;";
+                        WHERE id = this.id ;";
                 if($conn11-> query($sql11)) 
                 {
                     // echo "new record created successfully.";
@@ -338,8 +360,11 @@ session_start();
                 // echo $sql;
                 $conn11->close();
                 
+                
                 }
                 // echo("connected successfully.")
+                
+                // $conn_1->close();
             }           
 
 
@@ -491,7 +516,7 @@ session_start();
                             <div class="form-group">
                                 <label class="control-label col-sm-4 proimage" for="image" > Change Image:</label>                               
                                 <div class="col-sm-4 proimage">
-                                    <input type="file" class="form-control" id="image" placeholder="image" name="image" value="<?php echo $_SESSION['userDetails']['images'];?>" required>                                
+                                    <input type="file" class="form-control" id="image" placeholder="image" name="image" value="<?php echo $target_file;?>" required>                                
                                 </div>
 
                                 <div class="col-sm-3">
@@ -588,14 +613,14 @@ session_start();
                             
                             <div class="form-group">
                                 <label for="title1">Title:</label>
-                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" value="<?php echo $row["title"];?>" onkeyup="x1('title1','tit1','des1','de1">
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" value="<?php echo $record_1['title'];?>" onkeyup="x1('title1','tit1','des1','de1">
                                 <p><?php echo $titleErr1;?></p>
                                 <p id="tit1" style="display: none"></p>
                                 <br>
                             </div>
                             <div class="form-group">
                                 <label for="des1">Description:</label>
-                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" value="<?php echo $row["description"];?>" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" value="<?php echo $record_1["description"];?>" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
                                 <p><?php echo $desErr1;?></p>
                                 <p id="de1" style="display: none"></p>
                                 <br>
@@ -617,6 +642,55 @@ session_start();
                     </div>
                 </div>
         </div>
+
+
+
+        <!-- this is to delete post -->
+
+        <div class="container">
+              <!-- Modal -->
+                <div class="modal fade" id="myModaldelete" role="dialog">
+                    <div class="modal-dialog">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">DELETE POST</h4>
+                        </div>
+                        <form action="" method="post" onsubmit="return dele()">
+                        <div class="modal-body">
+
+                            <center>
+                            <h3 style="color:red;">THIS OPERATION CANNOT BE REVERTED !!!</h3>
+                            <br>
+                            </center>
+
+                            <div class="form-group">     
+                                <div class="checkbox">   
+                                    <div class="col-sm-offset-4 col-sm-4">
+                                        <input type="checkbox" name="remember" required> Confirm Delete Operation
+                                    </div>
+                                </div>
+                                <br>
+                            </div>                            
+                                 
+                        
+                        </div>
+                        
+                        <div class="modal-footer a">                        
+                            <button id="dele" type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+
+                        </form>
+                    </div>
+                    
+                    </div>
+                </div>
+        </div>
+
+
+
 
 
         <!-- profile display on left -->
@@ -688,7 +762,7 @@ session_start();
                     while($row=$postresult->fetch_assoc())
                     {
                     echo "<div class='b'>";
-                    echo "<h2>".$row["title"]."</h2> <a href='#myModalpost' style='color:#00bfff;background:none' data-toggle='modal'><span class='glyphicon glyphicon-pencil'></span></a>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       <a href='#myModalpost' style='color:#f4511e' data-toggle='modal'> <span class='glyphicon glyphicon-trash'></span> </a> <hr>";
+                    echo "<h2>".$row["title"]."</h2> <a href='#myModalpost' style='color:#00bfff;background:none' data-toggle='modal'><span class='glyphicon glyphicon-pencil'></span></a>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       <a href='#myModaldelete' style='color:#f4511e' data-toggle='modal'> <span class='glyphicon glyphicon-trash'></span> </a> <hr>";
                     echo "<pre>Created On:  " .$row["created_date_time"]."               Updated On:  " .$row["last_update_date_time"]."</pre>" ;
                     echo "<br><br>";
                     echo "<p>".$row["description"]."</p></div>";
