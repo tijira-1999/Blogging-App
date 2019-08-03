@@ -29,9 +29,12 @@ session_start();
     $fnameErr=$lnameErr=$emailErr=$passErr=$rpassErr=$pass1Err=$userErr=$phoneErr=$rpass1Err=$imageErr="";
     $fname=$lname=$email=$pass=$Uname=$phone=$rpass="";
     $titleErr=$desErr="";
+    $titleErr1=$desErr1="";
     $title=$des="";
+    $title1=$des1="";
     $status=true;
     $status1=true;
+    $status11=true;
     $servername="localhost";
     $username="root";
     $password="";
@@ -45,8 +48,13 @@ session_start();
         // echo $_SESSION['userDetails']['last_name']. "<br>";
         // echo $_SESSION['userDetails']['email']. "<br>";
 
+
+        
+
         if (!empty($_POST)) {
-               
+        
+            // for new post  
+
             if(empty($_POST['title'])){
                 $titleErr="email is empty";
                 $status=false;
@@ -65,6 +73,32 @@ session_start();
             else{
                 // echo "password:" .$_POST['pass']."<br>";
                 $des=$_POST['des'];
+                // $pass=sha1($pass);
+    
+            }
+
+
+
+            // for updating post
+               
+            if(empty($_POST['title1'])){
+                $titleErr1="email is empty";
+                $status11=false;
+    
+            }
+            else{
+                // echo "email:" .$_POST['email']."<br>";
+                $title1=$_POST['title1'];
+    
+            }
+            if(empty($_POST['des1'])){
+                $desErr1="password is empty";
+                $status11=false;
+    
+            }
+            else{
+                // echo "password:" .$_POST['pass']."<br>";
+                $des1=$_POST['des1'];
                 // $pass=sha1($pass);
     
             }
@@ -226,10 +260,50 @@ session_start();
             }                
               
             
+
+
+            // edit post table part
+           
+            if($status11){
+                // create new conection
+                $conn11 = new mysqli($servername,$username,$password,$dbname);
+        
+                // check connection
+                if($conn11->connect_error){
+                    die("connection falied" . $conn11->connect_error);
+                }
+                
+                else{
+    
+                $id11=$_SESSION['userDetails']['id'];
+                // $sql11= "INSERT into post (title,description,user_id) values('$title','$des','$id')";
+                $sql11= "UPDATE post 
+                            
+                        SET title = '$title1',
+                        description = '$des1',
+                        
+                        WHERE user_id = $id11 ;";
+                if($conn11-> query($sql11)) 
+                {
+                    // echo "new record created successfully.";
+                    header('Location:login.php');
+                }
+                else
+                {
+                    echo "error" .$sql11. "<br>" . $conn11->error;
+                }
+                // echo $sql;
+                $conn11->close();
+                
+                }
+                // echo("connected successfully.")
+            }           
+
+
     
            
     
-            // post table part
+            // create post table part
            
             if($status){
                 // create new conection
@@ -504,15 +578,15 @@ session_start();
                             
                             <div class="form-group">
                                 <label for="title1">Title:</label>
-                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" onkeyup="x1('title1','tit1','des1','de1">
-                                <p><?php echo $titleErr;?></p>
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onkeyup="x1('title1','tit1','des1','de1">
+                                <p><?php echo $titleErr1;?></p>
                                 <p id="tit1" style="display: none"></p>
                                 <br>
                             </div>
                             <div class="form-group">
                                 <label for="des1">Description:</label>
-                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
-                                <p><?php echo $desErr;?></p>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
+                                <p><?php echo $desErr1;?></p>
                                 <p id="de1" style="display: none"></p>
                                 <br>
                             </div>
