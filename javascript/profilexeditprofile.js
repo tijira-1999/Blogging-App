@@ -157,6 +157,23 @@ function x1(inputId1,errId1,inputId11,errId11){
 document.getElementById('sub1').disabled = !sta1;
 }
 
+function xxx1(idw2){
+    var check_11= document.getElementById('title');
+    var check_111 = document.getElementById('des');
+
+    // var check7 = document.getElementById('agree');
+   
+    if(check_11.value.length == "" || check_111.value.length == "" ){
+       
+        document.getElementById(idw2).style.display="block";
+        document.getElementById(idw2).style.color="red";
+        document.getElementById(idw2).innerHTML="check input fields";
+        
+        return false
+    }
+    else return true;
+}
+
 
 function xxx(idw1){
     var check11= document.getElementById('title1');

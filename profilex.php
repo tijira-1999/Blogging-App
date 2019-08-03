@@ -213,8 +213,8 @@ session_start();
               {
                 $imageErr= "Issues in file upload";
                 $status1 = false;
-                  }
-                }
+              }
+            }
 
 
             if($status1){
@@ -259,6 +259,40 @@ session_start();
                 // echo("connected successfully.")
             }                
               
+           
+    
+            // create post table part
+           
+            if($status){
+                // create new conection
+                $conn = new mysqli($servername,$username,$password,$dbname);
+        
+                // check connection
+                if($conn->connect_error){
+                    die("connection falied" . $conn->connect_error);
+                }
+                
+                else{
+    
+                $id=$_SESSION['userDetails']['id'];
+                $sql= "INSERT into post (title,description,user_id) values('$title','$des','$id')";
+                
+                if($conn-> query($sql)) 
+                {
+                    // echo "new record created successfully.";
+                    header('Location:login.php');
+                }
+                else
+                {
+                    echo "error" .$sql. "<br>" . $conn->error;
+                }
+                // echo $sql;
+                $conn->close();
+                
+                }
+                // echo("connected successfully.")
+            }
+
             
 
 
@@ -268,6 +302,15 @@ session_start();
                 // create new conection
                 $conn11 = new mysqli($servername,$username,$password,$dbname);
         
+
+                // to fetch specific post from post table
+                $conn_1 = new mysqli($servername,$username,$password,$dbname);
+                $id_1=$_SESSION['userDetails']['id'];
+                $sql_1="SELECT title,description,post.created_date_time,post.last_update_date_time,id from post
+                inner join users on post.user_id=users.id where user_id=$id_1";
+                $postresult_1=$conn_1->query($sql_1);
+
+
                 // check connection
                 if($conn11->connect_error){
                     die("connection falied" . $conn11->connect_error);
@@ -301,39 +344,6 @@ session_start();
 
 
     
-           
-    
-            // create post table part
-           
-            if($status){
-                // create new conection
-                $conn = new mysqli($servername,$username,$password,$dbname);
-        
-                // check connection
-                if($conn->connect_error){
-                    die("connection falied" . $conn->connect_error);
-                }
-                
-                else{
-    
-                $id=$_SESSION['userDetails']['id'];
-                $sql= "INSERT into post (title,description,user_id) values('$title','$des','$id')";
-                
-                if($conn-> query($sql)) 
-                {
-                    // echo "new record created successfully.";
-                    // header('Location:login.php');
-                }
-                else
-                {
-                    echo "error" .$sql. "<br>" . $conn->error;
-                }
-                // echo $sql;
-                $conn->close();
-                
-                }
-                // echo("connected successfully.")
-            }
     
         }
 
@@ -522,7 +532,7 @@ session_start();
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">CREATE NEW POST</h4>
                         </div>
-                        <form action="" method="post" onsubmit="return xxx('idx1')">
+                        <form action="" method="post" onsubmit="return xxx1('idx1')">
                         <div class="modal-body">
 
                             
@@ -578,14 +588,14 @@ session_start();
                             
                             <div class="form-group">
                                 <label for="title1">Title:</label>
-                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onkeyup="x1('title1','tit1','des1','de1">
+                                <input type="text" class="form-control" placeholder="Enter Title" name="title1" id="title1" value="<?php echo $row["title"];?>" onkeyup="x1('title1','tit1','des1','de1">
                                 <p><?php echo $titleErr1;?></p>
                                 <p id="tit1" style="display: none"></p>
                                 <br>
                             </div>
                             <div class="form-group">
                                 <label for="des1">Description:</label>
-                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" value="<?php echo $_SESSION['userDetails']['first_name'];?>" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
+                                <textarea  class="form-control" placeholder="Enter Description" name="des1" id="des1" rows="5" value="<?php echo $row["description"];?>" onkeyup="x1('title1','tit1','des1','de1')"></textarea>
                                 <p><?php echo $desErr1;?></p>
                                 <p id="de1" style="display: none"></p>
                                 <br>
