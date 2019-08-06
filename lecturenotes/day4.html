@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        function myFunc()
+        {
+            var len=document.getElementById("dd").value.length;
+// console.log(len);
+
+            if(len<1){
+                document.getElementById("ppp").style.display="block";
+            }
+            
+        }
+
+       myfunc1= () =>{
+        var pass=document.getElementById("pass").value;
+            var rpass=document.getElementById("rpass").value;
+            if(pass!=rpass)
+            document.getElementById("x").style.display="block";
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="dd" name="na"><br>
+    
+    <p id="ppp" style="display: none">name empty</p><br>
+    <button onclick="myFunc()">click me</button><br><br>
+
+    password <input type="password" id="pass"><br>
+    reenter password <input type="password" id="rpass"><br>
+    <p id="x" style="display: none">password mismatch</p>
+    <button onclick="myfunc1()">click</button>
+
+</body>
+</html>

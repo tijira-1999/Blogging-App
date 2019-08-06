@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <title>Register page</title>
+
+    <style> 
+            input[type=text] {
+              width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              box-sizing: border-box;
+              border: 3px solid #ccc;
+              -webkit-transition: 0.5s;
+              transition: 0.5s;
+              outline: none;
+            }
+            
+            input[type=text]:focus {
+              border: 3px solid #555;
+            }
+
+            .container{
+              margin-top: 50px;
+              border-radius: 10px;
+                padding-top: 50px;
+                background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+            }
+            </style>
+            <script type="text/javascript" src="javascript/login.js"></script>
+</head>
+<body>
+    
+        <div class="container">
+                <fieldset>
+        <Legend>LOGIN</Legend>
+                <form class="form-horizontal" action="/action_page.php" onsubmit=" return validate2('idx')">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-4">
+                      <input type="email" class="form-control" id="x" placeholder="Enter email" name="email" onblur="validate('x','xe')">
+                    </div>
+                    <span><p id="xe" style="display: none"></p></span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-4">          
+                      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" onblur="validate('pwd','xxe')">
+                    </div>
+                    <span><p id="xxe" style="display: none"></p></span>
+                  </div>
+                  
+                  <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="checkbox">
+                        <label><input type="checkbox" name="remember"> Remember me</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-4">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>                  <span><p id="idx" style="display: none"></p></span>
+
+                  </div>
+                </form>
+                </fieldset>
+
+              </div>
+</body>
+</html>

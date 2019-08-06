@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>tag selctor</p>
+    <p>second</p>
+    <p id="paraId">Id selector</p>
+    <p class="paraClass">class selector</p>
+    <button id="click">click</button>
+    <script src="javascript/jquery-3.4.1.min.js"></script>
+    
+<form action="signup.php">
+        <input type="text" name="aa" id="aa"><br>
+        <p style="display: none" id="err"></p><br>
+        <input type="text" name="aaa" id="aaa"><br>
+        <p style="display: none" id="err2"></p><br>
+        <input type="submit" value="click">
+        <p style="display: none" id="err3"></p><br>
+</form>
+ <script>
+    $(document).ready(function(){
+        console.log($("p").html());
+        console.log($("p:nth-child(2)").html());
+        console.log($("#paraId").html());
+        console.log($(".paraClass").html());
+        $("#click").click(function(){
+            alert("click event")
+        });
+
+        
+
+    });
+$("form").submit(function(event){
+    
+event.preventDefault();
+    if($("#aa").val()!=$("#aaa").val()  || $("#aa").val()==""  || $("#aaa").val()==""){
+        $("#err3").html("password dont match");
+        $("#err3").css("color","red");
+        $("#err3").show();
+        
+        
+        
+        
+    }
+    
+});
+
+$("#aa").bind("blur",function(){
+    let aa = $("#aa").val();
+    if(aa==""){
+        $("#err").html("empty");
+        $("#err").css("color","red");
+        $("#err").show();
+
+    }
+    else{
+        $("#err").html("correct");
+        $("#err").css("color","blue");
+        $("#err").show();
+    }
+});
+
+$("#aaa").bind("blur",function(){
+    let aaa = $("#aaa").val();
+    if(aaa==""){
+        $("#err2").html("empty");
+        $("#err2").css("color","red");
+        $("#err2").show();
+
+    }
+    else{
+        $("#err2").html("correct");
+        $("#err2").css("color","blue",);
+        $("#err2").show();
+    }
+});
+    
+    </script>   
+</body>
+</html>

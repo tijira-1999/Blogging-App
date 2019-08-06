@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="css/register.css">
+
+  <script type="text/javascript" src="javascript/register.js"></script>
+
+    <title>Register page</title>
+
+   
+           
+</head>
+<body>
+    
+        <div class="container">
+                <fieldset>
+        <Legend>REGISTER</Legend>
+                <form class="form-horizontal" action="/action_page.php" onsubmit=" return validate2('idx')">
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="fname">firstname:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="fname" placeholder="firstname" name="fname" onblur="validate('fname','fnam')">
+                    </div>
+                    <p id="fnam" style="display: none"></p>
+                </div>
+                
+                
+                
+                <div class="form-group">
+                        <label class="control-label col-sm-2" for="lname">lastname:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="lname" placeholder="lastname" name="lname" onblur="validate('lname','lnam')">
+                        </div>
+                        <p id="lnam" style="display: none"></p>
+
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                            <label class="control-label col-sm-2" for="Uname">Username:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="user" placeholder="Username" name="Uname" onblur="validate('user','use')">
+                            </div>
+                            <p id="use" style="display: none"></p>
+                          </div>
+                        
+                        
+                        
+                        <div class="form-group">
+                                <label class="control-label col-sm-2" for="phone">Phone:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" id="phone" placeholder="phone number" name="phone" onblur="validate('phone','phon')" >
+                                </div>
+                                <p id="phon" style="display: none"></p>
+                            </div>
+                            
+                            
+                  
+                            <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-4">
+                      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" onblur="validate('email','emai')">
+                    </div>
+                    <p id="emai" style="display: none"></p>
+                  </div>
+
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-4">          
+                      <input type="password" class="form-control"id="pass" placeholder="Enter password" name="pwd" onkeyup="validate1('pass','pas')">
+                    </div>
+                    <p id="pas" style="display: none"></p>
+                  </div>
+                  <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd" > Renter Password:</label>
+                        <div class="col-sm-4">          
+                          <input type="password" class="form-control" id="rpass" placeholder="Renter password" name="pwd" onkeyup="validate1('rpass','rpas')">
+                        </div>
+                        <p id="rpas" style="display: none"></p>
+
+                      </div>
+                      <div  style="text-align: center;" id="x" style="display: none"></div>
+                      <div class="form-group">        
+                          <div class="col-sm-offset-2 col-sm-4">
+                            <div class="checkbox">
+                              <label><input type="checkbox" id="agree" name="agree" required>I agree</label>
+                            </div>
+                          </div>
+                        </div>
+                  <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-4">
+                      <div class="checkbox">
+                        <label><input type="checkbox" name="remember"> Remember me</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-4">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                    <span><p id="idx" style="display: none"></p></span>
+                  </div>
+                </form>
+                </fieldset>
+
+              </div>
+</body>
+</html>
